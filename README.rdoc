@@ -1,9 +1,39 @@
 = ActsAsWildSearchable
 ---------
-This plugin allows you to search in your models on each of its attributes using wild cards.
-<tt>
-class User < ActiveRecord::Base
-  acts_as_wild_searchable
-end
-</tt>
+This plugin allows you to search in your models on each of its attributes using <b>wild cards</b>.
+
+== GEM Location
+  gem act_as_wild_searchable, :git => 'http://github.com/canimus/act_as_wild_searchable.git'
+
 == Installation
+  bundle install
+  
+== Tested Versions
+* Rails 3.2.3
+
+== Usage
+
+=== Query Basics
+
+* the +_like?+ method
+
+  Consider that you model has the name attribute
+    User.name_like? "John"
+
+* the +chain+ capabilities
+
+  To chain various queries just add another query after the usage of the like? method
+    User.name_like?("John").where(:id => 1)
+
+* the +multiple_search+ 
+
+  You can add as many clauses and by default will be added using an "or" clause
+    User.name_like? "John","David", "Peter"
+  
+
+=== General configuration options
+
+You can configure the following attributes that will locate the wild card for your search
+  left              # false by default
+  right             # false by default
+  clause            # "or" by default
