@@ -5,7 +5,7 @@ The default behavior is to chain the search parameters using "or" and wild cards
 This behavior can be changed by adding the :clause=>"and" and the :left=>true or :right=>true parameters
 
 == GEM Location
-  gem 'act_as_wild_searchable', :git => 'http://github.com/canimus/act_as_wild_searchable.git'
+  gem 'act_as_wild_searchable', :git => 'http://github.com/canimus/acts_as_wild_searchable-0.0.1.gem'
 
 == Installation
   bundle install
