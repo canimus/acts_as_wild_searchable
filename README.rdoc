@@ -1,6 +1,8 @@
 = ActsAsWildSearchable
 ---------
 This plugin allows you to search in your models on each of its attributes using <b>wild cards</b>.
+The default behavior is to chain the search parameters using "or" and wild cards in both sides.
+This behavior can be changed by adding the :clause=>"and" and the :left=>true or :right=>true parameters
 
 == GEM Location
   gem act_as_wild_searchable, :git => 'http://github.com/canimus/act_as_wild_searchable.git'
@@ -28,7 +30,24 @@ This plugin allows you to search in your models on each of its attributes using 
 * the +multiple_search+ 
 
   You can add as many clauses and by default will be added using an "or" clause
-    User.name_like? "John","David", "Peter"
+    User.name_like? "John","David", "Peter" # Produces where (name like ? or name like ? or name like ?, "%John%", "%David%", "%Peter%")
+
+* the +left+ 
+
+  You can position the wild card with a hash addition to the call
+    User.name_like? "John","David", :left => true # Produces where (name like ? or name like ?,  "%John", "%David")
+
+* the +right+ 
+
+  You can position the wild card with a hash addition to the call
+    User.name_like? "John","David", :right => true # Produces where (name like ? or name like ?,  "John%", "David%")
+
+* the +clause+ 
+
+  You can change the default behavior for the wild card search by addint the clause hash
+    User.name_like? "John","David", :clause => "and" # Produces where (name like ? and name like ?,  "%John%", "%David%")
+    
+
   
 
 === General configuration options
