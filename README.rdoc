@@ -1,4 +1,5 @@
 = ActsAsWildSearchable
-
+---------
 This plugin allows you to search in your models on each of its attributes using wild cards.
 
+== Installation
