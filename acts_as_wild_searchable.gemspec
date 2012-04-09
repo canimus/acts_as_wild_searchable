@@ -7,11 +7,11 @@ require "acts_as_wild_searchable/version"
 Gem::Specification.new do |s|
   s.name        = "acts_as_wild_searchable"
   s.version     = ActsAsWildSearchable::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ActsAsWildSearchable."
-  s.description = "TODO: Description of ActsAsWildSearchable."
+  s.authors     = ["Herminio Vazquez"]
+  s.email       = ["canimus@gmail.com"]
+  s.homepage    = "http://www.canimus.com"
+  s.summary     = "Extends your models to use the :attr_like? method to use wild cards"
+  s.description = "This gem allows you to use the acts_as_wild_searchable tag to your models and make methods for each attribute to search using wild cards and like"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
