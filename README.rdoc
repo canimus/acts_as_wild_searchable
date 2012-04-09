@@ -1,5 +1,9 @@
 = ActsAsWildSearchable
 ---------
 This plugin allows you to search in your models on each of its attributes using wild cards.
-
+<tt>
+class User < ActiveRecord::Base
+  acts_as_wild_searchable
+end
+</tt>
 == Installation
