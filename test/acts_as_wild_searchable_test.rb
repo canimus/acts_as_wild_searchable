@@ -52,6 +52,20 @@ class ActsAsWildSearchableTest < ActiveSupport::TestCase
     assert query.explain.include?("name like 'Herminio%' and name like 'Kalli%'")
     assert_kind_of ActiveRecord::Relation, query
   end
+  
+  test "query_nil_args" do
+    query = User.name_like?
+    puts query.explain
+    #assert query.explain.include?("S")
+    assert_kind_of ActiveRecord::Relation, query
+  end
+
+  test "query_empty_array" do
+    query = User.name_like?([])
+    puts query.explain
+    #assert query.explain.include?("S")
+    assert_kind_of ActiveRecord::Relation, query
+  end
 
   
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    acts_as_wild_searchable (0.0.1)
+    acts_as_wild_searchable (0.0.7)
       rails (~> 3.2.3)
 
 GEM
@@ -86,7 +86,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.32)
+    tzinfo (0.3.33)
 
 PLATFORMS
   ruby

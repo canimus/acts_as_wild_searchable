@@ -50,8 +50,11 @@ module ActsAsWildSearchable
         element.kind_of? Hash 
       }.reduce({:clause=>"or"}) { |h, pairs| pairs.each { |k,v| h[k]=v}; h}
       
-      conditions = filter.select { |element| 
-        element.kind_of? String
+      
+      conditions = filter.reduce([]) { |group, element| 
+        element.each { |inner_string| group<<inner_string } if element.kind_of? Array
+        group<<element if element.kind_of? String
+        group
       }.map { |condition| 
           wild_condition = "#{condition}"
           if (clauses.has_key?(:left) and clauses[:left]) 
@@ -69,16 +72,23 @@ module ActsAsWildSearchable
           wild_condition
       }         
       
-        sentences = conditions.map { |x| "#{capture} like ?" }
+      sentences = conditions.map { |x| "#{capture} like ?" }
       
       if (clauses.has_key?(:clause) and clauses[:clause]=="and" )
         join_type = " and "
       else
         join_type = " or "
       end
-      sentences = sentences.join(join_type) if sentences.size > 1
-      sentences = sentences.first if sentences.size == 1      
-      where conditions.prepend sentences
+      
+      if sentences.flatten.size == 0
+        where("#{capture} like ?", "%") 
+      else
+        sentences = sentences.join(join_type) if sentences.size > 1
+        sentences = sentences.first if sentences.size == 1
+        
+        where conditions.prepend sentences
+      end
+
     end
     
   end
